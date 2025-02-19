@@ -1,0 +1,33 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+    </head>
+    <body>
+        <section th:replace="~{layout/plantilla :: header1}"></section>
+
+        <header th:replace="~{layout/plantilla :: header2}"></header>
+
+        <div class="container">
+            <h1>Lista de favoritos</h1>
+        
+                <div class="container my-5">
+                    <h2 class="mb-4 text-center">Lista de deseos</h2>
+                    <div class="row">
+                        <div class="col-12 col-sm-6 col-lg-4 mb-4" th:each="favoritos : ${favoritos}" th:object="${favoritos}">
+                            <div class="card">
+                                <img th:src="@{/images/{filename}(filename=*{getProducto().getImg()})}" class="card-img-top" alt="Producto">
+                                <div class="card-body">
+                                    <h5 class="card-title" th:text="*{getProducto().getNombre()}"></h5>
+                                    <p class="card-text" th:text="*{getProducto().getDescripcion()}"></p>
+                                    <p class="card-text"th:text="*{getProducto().getStock()}"></p>
+                                    <span style="display: flex;"> $<p class="card-text" th:text="*{getProducto().getPrice()}"></p></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <footer th:replace="~{layout/plantilla :: footer}"></footer>
+    </body>
+</html>
